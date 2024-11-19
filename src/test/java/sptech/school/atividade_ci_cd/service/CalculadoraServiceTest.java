@@ -26,21 +26,16 @@ class CalculadoraServiceTest {
     @Test
     @DisplayName("Quando acionado com 10 e 0, então deve lançar uma exceção")
     public void testDividirPorZero() {
-        // Arrange
         CalculadoraService calculadoraService = new CalculadoraService();
         double a = 10;
         double b = 0;
-        var expectedMessage = "400 BAD_REQUEST \"Divisão por zero não permitida\"";
 
-        // Assert
         ResponseStatusException exception = assertThrows(
                 ResponseStatusException.class, () -> {
-                    // Act
                     calculadoraService.dividir(a, b);
-                });
+                }
+        );
 
-        // Assert
-        assertEquals(expectedMessage, exception.getMessage());
+        assertEquals("400 BAD_REQUEST \"Divisão por zero não é permitida\"", exception.getMessage());
     }
-
 }
